@@ -26,13 +26,14 @@ Mengambil contoh dataset atau project mandiri yang pernah dibuat
     1. teori pendahuluan
     2. teori pendukung utk file ipynb
     3. outline 
-| ENG               | ID |
-| -------------     |:-------------:    |
-| intro             |  pendahuluan      |
-| state of the art  | gagasan           |
-| method            | metode            |
-| result and discussion | pembahasan    |
-| conclussion       | kesimpulan        |
+   
+| ENG                   | ID                |
+| ----------------------|:-----------------:|
+| intro                 | pendahuluan      |
+| state of the art      | gagasan           |
+| method                | metode            |
+| result and discussion | pembahasan        |
+| conclussion           | kesimpulan        |
 
 - Konten file IPYNB
    1. buat markdown yang terstruktur
