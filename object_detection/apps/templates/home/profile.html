@@ -1,0 +1,52 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('{{ config.ASSETS_ROOT }}/img/robot2.jpg'); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-6"></span>
+      </div>
+      <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+        <div class="row gx-4">
+          <div class="col-auto">
+            <div class="avatar avatar-xl position-relative">
+              <img  src="{{ config.ASSETS_ROOT }}/img/unknown.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            </div>
+          </div>
+          <div class="col-auto my-auto">
+            <div class="h-100">
+              <h5 class="mb-1">
+                {{ current_user.username }}
+              </h5>
+              <p class="mb-0 font-weight-bold text-sm">
+
+                {% if current_user.email %}
+                  {{ current_user.email }}
+                {% else %}
+                  Authenticated with Github
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container-fluid py-4">
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
