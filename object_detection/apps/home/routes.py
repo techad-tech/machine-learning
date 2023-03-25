@@ -8,10 +8,19 @@ from flask import render_template, request, Response
 from flask_login import login_required
 from jinja2 import TemplateNotFound
 import cv2
+from ultralytics import YOLO
+import supervision as sv
 
 from apps.config import API_GENERATOR
 
+# Load a model
+model = YOLO('yolov8n.pt')
+
 camera = cv2.VideoCapture(0)
+box_annotator = sv.BoxAnnotator(
+      thickness=2,
+      text_thickness=2,
+      text_scale=1 )
 
 def gen_frames():
     while True:
@@ -19,6 +28,14 @@ def gen_frames():
         if not success:
             break
         else:
+            result= model(frame)[0]
+            detections = sv.Detections.from_yolov8(result)
+            labels = [
+                f"{model.model.names[class_id]} {confidance:0.2f}"
+                for _ , confidance, class_id, _
+                in detections
+                ]
+            frame = box_annotator.annotate(scene=frame, detections=detections, labels=labels)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
